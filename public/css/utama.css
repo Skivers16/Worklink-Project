@@ -1,0 +1,433 @@
+/* Import statement at the top */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sonsie+One&display=swap');
+
+:root {
+    --base-clr: #739AB9;
+    --fcs-clr: #abefb4;
+    --text-clr: #000000;
+}
+
+/* Apply to all elements */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    /* Use Montserrat as the primary font, fallback to system fonts */
+    font-family: 'Montserrat', 'Sonsie One', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.5rem;
+}
+
+body {
+    min-height: 100vh;
+    min-height: 100dvh;
+    background-color: var(--base-clr);
+    color: var(--text-clr);
+    display: grid;
+    grid-template-rows: 100%;
+    grid-template-columns: auto 1fr;
+}
+
+/* Apply Poppins to specific elements */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Poppins', sans-serif;
+}
+
+p {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.content-section {
+    margin-left: 20px;
+    padding: 1rem;
+    color: white
+}
+
+.section {
+    display: none;
+}
+
+.section.active{
+    display: block;
+    background-color: var(--base-clr);
+}
+
+#sidebar {
+    background-color: white;
+    box-sizing: border-box;
+    width: 260px;
+    padding: 5px 1em;
+    font-size: medium;
+    position: sticky;
+    top: 0;
+    align-self: start;
+    transition: 300ms ease-in-out;
+    overflow: hidden;
+    text-wrap: nowrap;
+}
+
+#sidebar ul {
+    list-style: none;
+}
+
+#sidebar>ul>li:first-child {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 16px;
+
+    .logo {
+        font-weight: 600;
+        font-family: 'Sonsie One';
+        color: var(--base-clr);
+    }
+}
+
+#sidebar img:last-child {
+    align-self: center;
+    margin-top: auto;
+    width: 220px;
+}
+
+#sidebar a,
+#sidebar .logo {
+    border-radius: .5em;
+    padding: .7em;
+    text-decoration: none;
+    color: var(--text-clr);
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+#sidebar a:hover{
+    color: var(--base-clr);
+}
+
+#sidebar svg {
+    flex-shrink: 0;
+    fill: var(--text-clr);
+}
+
+#sidebar a span {
+    flex-grow: 1;
+}
+
+#sidebar.close {
+    padding: 5px;
+    width: 50px;
+}
+
+.btn{
+    min-width: 160px;
+    padding: 12px;
+    margin: 10px;
+    border-radius: 25px;
+    cursor: pointer;
+    border-color: #739AB9;
+}
+
+.btn span{
+    padding-left: 5px;
+}
+
+.btn:hover{
+    transform: translate3d(2px,3px,0px);
+    box-shadow: 2px 4px var(--fcs-clr);
+}
+
+#toggle-btn {
+    margin-left: auto;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+#toggle-btn img {
+    width: 35px !important;
+}
+
+/* Career Showcase && Liked Jobs */
+.menu_showcase {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.menu_showcase h1 {
+    font-size: 48px;
+}
+
+.header-content {
+    display: flex;
+    justify-content: flex-end;
+    gap: 30px;
+    margin-bottom: 20px;
+    margin: 20px;
+}
+
+.search-bar {
+    padding: 8px 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+}
+
+.profile {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.profile-logo {
+    width: 30px;
+    height: 30px;
+    border-radius: 20%;
+}
+
+.main_content {
+    padding: 30px 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.editable_card {
+    border-radius: 10px;
+    color: black;
+    width: 95%;
+    background-color: white;
+    padding: 20px;
+}
+
+.editable_card .card_content {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0px;
+}
+
+.editable_card .card_content p {
+    font-size: 12px;
+    line-height: normal;
+}
+
+.edit_card_content {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0px;
+}
+
+.edit_card_content p {
+    font-size: 12px;
+}
+
+
+.editable_card_desc {
+    padding-top: 10px;
+    font-weight: 500;
+}
+
+.editable_card hr {
+    margin: 10px;
+}
+
+.flex_between {
+    display: flex;
+    justify-content: space-between;
+}
+
+.ed_card_action {
+    display: flex;
+    gap: 7px;
+    cursor: pointer;
+}
+
+/* #007AFF */
+
+/* Liked Jobs */
+.jobs_liked_content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 0px;
+    font-size: 12px;
+    line-height: normal;
+}
+
+.flex-start {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 5px;
+}
+
+.flex-center{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.tag-item {
+    background-color: #ececec;
+    padding: 6px 6px;
+    border-radius: 5px;
+    color: rgb(99, 99, 99);
+    font-weight: 500;
+    margin: 0px 3px;
+    opacity: 75%;
+}
+
+.tag-item:hover {
+    opacity: 100%;
+}
+
+/* Profile Pages */
+.profile_container {
+    background-color: white;
+    border-radius: 20px;
+    color: #424242;
+    margin: 50px 0px;
+}
+
+.profile_img {
+    width: 100%;
+    border-radius: 20px 20px 0px 0px;
+}
+
+.profile_bio {
+    padding: 80px 60px 30px;
+}
+
+.profile_occ {
+    display: flex;
+    flex-direction: row;
+    padding: 50px;
+    font-size: 12px;
+    font-weight: 500;
+    align-items: center;
+    gap: 7px;
+}
+
+.profile_container img.labubu-circle {
+    position: absolute;
+    top: 260px;
+    left: 30%;
+    transform: translateX(-50%);
+    z-index: 1;
+    border-radius: 50%;
+    width: 12%;
+}
+
+.profile_container .ic-edit {
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px 40px 0px 0px;
+    cursor: pointer;
+}
+
+.profile_container .ic-edit:hover {
+    scale: 100.2%;
+}
+
+.profile_experience {
+    background-color: white;
+    color: #424242;
+    padding: 30px 60px;
+    border-radius: 20px;
+}
+
+.profile_experience_item {
+    display: flex;
+    flex-direction: row;
+    padding: 25px 0px;
+    align-items: center;
+    gap: 10px;
+}
+
+.profile_experience_list {
+    display: flex;
+    flex-direction: row;
+    padding: 10px 0px;
+    align-items: center;
+    line-height: normal;
+}
+
+.profile_experience_list p {
+    font-size: 12px;
+}
+
+.profile_experience_item p {
+    font-size: 12px;
+}
+
+.subtitle{
+    padding-top: 5px;
+    font-weight: 300;
+}
+
+
+/* Popup container */
+.form-container {
+    color: #000000;
+    margin: auto;
+    width: 90%;
+    max-width: 60%; /* Limit width on larger screens */
+    z-index: 10;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding:30px; /* Add padding for content */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Soft shadow */
+}
+
+
+.form-container input{
+    padding: 5px;
+}
+
+.form-container label{
+    font-size: 12px;
+    padding-bottom: 5px;
+    padding-top: 10px;
+}
+
+.form-container select{
+    padding: 7px;
+    margin: 3px 0px 15px 0px;
+    width: 45%;
+    row-gap: 5px;
+}
+
+.form-container textarea{
+    margin-bottom: 3px;
+}
+
+.form-container .btn-submit{
+    width: 20%;
+    border-radius: 25px;
+    margin-top: 10px;
+    color: white;
+    background-color: #739AB9;
+    cursor: pointer;
+}
+
+.add_form, .edit_form{
+    display:none;
+}
