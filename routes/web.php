@@ -27,18 +27,21 @@ Route::post('/login', [LoginController::class, 'authenticate']);
 Route::get('/regis', [RegisterController::class, 'index']);
 Route::post('/regis', [RegisterController::class, 'store']);
 
-//Route::controller();
-
 Route::resource('/utama', DashboardController::class);
 
 Route::put('/utama/profile/{id}', [DashboardController::class, 'update']);
 Route::put('/utama/expr-edit/{id}', [DashboardController::class, 'update2']);
 Route::put('/utama/cert-edit/{id}', [DashboardController::class, 'update3']);
+Route::put('/utama/wrkexpr-edit/{id}', [DashboardController::class, 'update4']);
+Route::put('/utama/skl-edit/{id}', [DashboardController::class, 'update5']);
 
 Route::post('/utama/expr-add', [DashboardController::class, 'store']);
 Route::post('/utama/cert-add', [DashboardController::class, 'store2']);
+Route::post('/utama/wrkexpr-add', [DashboardController::class, 'store3']);
+Route::post('/utama/skl-add', [DashboardController::class, 'store4']);
 
 Route::delete('/utama/expr-del/{id}', [DashboardController::class, 'destroy']);
 Route::delete('/utama/cert-del/{id}', [DashboardController::class, 'destroy2']);
-
+Route::delete('/utama/wrkexpr-del/{id}', [DashboardController::class, 'destroy3']);
+Route::delete('/utama/skl-del/{id}', [DashboardController::class, 'destroy4']);
 

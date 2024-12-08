@@ -23,8 +23,8 @@ class DashboardController extends Controller
             'profile' => Profile::with('user')->where('id_user', $user)->get(),
             'experience' => Experience::where('id_user', $user)->get(),
             'certifications' => Certifications::where('id_user', $user)->get(),
-            'work_experience' => work_experience::where('id_user', $user)->get(),
-            'skills' => skills::where('id_user', $user)->get()
+            'work_experience' => Work_Experience::where('id_user', $user)->get(),
+            'skills' => Skills::where('id_user', $user)->get()
         ]);
     }
 
@@ -74,6 +74,46 @@ class DashboardController extends Controller
                 'end_date' => $request->end_date,
                 'end_year' => $request->end_year,
                 'location' => $request->location,
+                'description' => $request->description,
+                'id_user' => $user
+            ]);
+            return redirect('/utama');
+        } catch (\Exception $e) {
+            dd($e);
+        }
+    }
+
+    public function store3(Request $request)
+    {
+        $user = Auth::user()->id;
+        try {
+            Work_Experience::create([
+                'Title' => $request->title,
+                'employment_type' => $request->employment_type,
+                'company_name' => $request->company_name,
+                'location' => $request->location,
+                'start_date' => $request->start_date,
+                'start_year' => $request->start_year,
+                'end_date' => $request->end_date,
+                'end_year' => $request->end_year,
+                'profile_headline' => $request->profile_headline,
+                'description' => $request->description,
+                'id_user' => $user
+            ]);
+            return redirect('/utama');
+        } catch (\Exception $e) {
+            dd($e);
+        }
+    }
+
+    public function store4(Request $request)
+    {
+        $user = Auth::user()->id;
+        try {
+            Skills::create([
+                'name_skill' => $request->name_skill,
+                'work_as' => $request->work_as,
+                'experience' => $request->experience,
                 'description' => $request->description,
                 'id_user' => $user
             ]);
@@ -176,22 +216,6 @@ class DashboardController extends Controller
 
     public function update4(Request $request, string $id)
     {
-        skills::updateOrCreate(
-            [
-                'id' => $id,
-            ],
-            [
-                'name_skill' => $request->name_skill,
-                'work_as' => $request->work_as,
-                'experience' => $request->experience,
-                'description' => $request->description,
-            ]
-        );
-        return redirect('/utama');
-    }
-
-    public function update5(Request $request, string $id)
-    {
         work_experience::updateOrCreate(
             [
                 'id' => $id,
@@ -206,6 +230,22 @@ class DashboardController extends Controller
                 'end_date' => $request->end_date,
                 'end_year' => $request->end_year,
                 'profile_headline' => $request->profile_headline,
+                'description' => $request->description,
+            ]
+        );
+        return redirect('/utama');
+    }
+
+    public function update5(Request $request, string $id)
+    {
+        skills::updateOrCreate(
+            [
+                'id' => $id,
+            ],
+            [
+                'name_skill' => $request->name_skill,
+                'work_as' => $request->work_as,
+                'experience' => $request->experience,
                 'description' => $request->description,
             ]
         );
@@ -229,8 +269,30 @@ class DashboardController extends Controller
     public function destroy2(string $id)
     {
         try {
-            $certifications = Certifications::findOrFail($id);
+            $certifications = certifications::findOrFail($id);
             $certifications->delete();
+            return redirect('/utama');
+        } catch (\Exception $e) {
+            dd($e);
+        }
+    }
+
+    public function destroy3(string $id)
+    {
+        try {
+            $work_experience = work_experience::findOrFail($id);
+            $work_experience->delete();
+            return redirect('/utama');
+        } catch (\Exception $e) {
+            dd($e);
+        }
+    }
+
+    public function destroy4(string $id)
+    {
+        try {
+            $skills = Skills::findOrFail($id);
+            $skills->delete();
             return redirect('/utama');
         } catch (\Exception $e) {
             dd($e);

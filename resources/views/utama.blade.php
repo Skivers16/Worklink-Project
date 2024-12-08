@@ -550,12 +550,9 @@
                         <hr />
                     </div>
                     <div class="editable_card">
-                        <div class="flex_between">
-                            <h3>Licenses & Certifications</h3>
-                        </div>
                         <!------------------------------------------------->
                         <div class="d-flex justify-content-between">
-                            <h3>Experience</h3>
+                            <h3>Licenses & Certifications</h3>
                             <button type="button" class="btn btn-primary" data-toggle="modal"
                                 data-target="#modalAddCertifications">Add Certifications</button>
                         </div>
@@ -571,6 +568,12 @@
                                             <div class="form-group">
                                                 <label for="recipient-name" class="col-form-label">Name</label>
                                                 <input type="text" name="name" value=""
+                                                    class="form-control" id="recipient-name" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="recipient-name"
+                                                    class="col-form-label">Organization</label>
+                                                <input type="text" name="organization" value=""
                                                     class="form-control" id="recipient-name" required>
                                             </div>
                                             <div class="form-group">
@@ -649,7 +652,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="recipient-name" class="col-form-label">Location</label>
-                                                <input type="text" name="profile_headline" value=""
+                                                <input type="text" name="location" value=""
                                                     class="form-control" id="recipient-name" required>
                                             </div>
                                             <div class="form-group">
@@ -678,7 +681,7 @@
                                     <p class="editable_card_desc">{{ $cert->description }}</p>
                                 </div>
                             </div>
-                            <div class="flex-center" id="flex_expr-{{ $cert->id }}">
+                            <div class="flex-center" id="flex_cert-{{ $cert->id }}">
                                 <button type="button" data-toggle="modal"
                                     data-target="#modalEditCertifications-{{ $cert->id }}" class="btn"><i
                                         class="fa fa-edit"></i><span>Edit Certifications</span></button>
@@ -687,24 +690,24 @@
                                         class="	fa fa-trash-o"></i><span>Delete Certifications</span></button>
                             </div>
                             <!--Edit Modal Certifications Starts here-->
-                            <div class="modal fade" id="modalEditCertifications" tabindex="-1" role="dialog"
-                                aria-hidden="true">
+                            <div class="modal fade" id="modalEditCertifications-{{ $cert->id }}" tabindex="-1"
+                                role="dialog" aria-hidden="true">
                                 <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <form action="/utama/cert-edit/{{ $cert->id }}" method="post">
                                             @csrf
                                             @method('PUT')
                                             <div class="modal-body">
-                                                <h2>Edit Data</h2>
+                                                <h2>Add Data</h2>
                                                 <div class="form-group">
                                                     <label for="recipient-name" class="col-form-label">Name</label>
                                                     <input type="text" name="name" value="{{ $cert->name }}"
                                                         class="form-control" id="recipient-name" required>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="recipient-name" class="col-form-label">Organization
-                                                        Type</label>
-                                                    <input type="text" name="employment_type"
+                                                    <label for="recipient-name"
+                                                        class="col-form-label">Organization</label>
+                                                    <input type="text" name="organization"
                                                         value="{{ $cert->organization }}" class="form-control"
                                                         id="recipient-name" required>
                                                 </div>
@@ -786,7 +789,7 @@
                                                 <div class="form-group">
                                                     <label for="recipient-name"
                                                         class="col-form-label">Location</label>
-                                                    <input type="text" name="profile_headline"
+                                                    <input type="text" name="location"
                                                         value="{{ $cert->location }}" class="form-control"
                                                         id="recipient-name" required>
                                                 </div>
@@ -823,7 +826,7 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
                                                 data-bs-dismiss="modal">Close</button>
-                                            <form action="/utama/expr-del/{{ $cert->id }}" method="post">
+                                            <form action="/utama/cert-del/{{ $cert->id }}" method="post">
                                                 @csrf
                                                 @method('delete')
                                                 <button type="submit" class="btn btn-danger">Delete Data</button>
@@ -837,31 +840,162 @@
                         <hr />
                     </div>
                     <div class="editable_card">
-                        <div class="flex_between">
+                        <!------------------------------------------------->
+                        <div class="d-flex justify-content-between">
                             <h3>Work Experience</h3>
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#modalAddWorkExperience">Add Work Experience</button>
                         </div>
+                        <!--Add Modal Work Experience Starts here-->
+                        <div class="modal fade" id="modalAddWorkExperience" tabindex="-1" role="dialog"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <form action="/utama/wrkexpr-add" method="post">
+                                        @csrf
+                                        <div class="modal-body">
+                                            <h2>Add Data</h2>
+                                            <div class="form-group">
+                                                <label for="recipient-name" class="col-form-label">Title</label>
+                                                <input type="text" name="title" value=""
+                                                    class="form-control" id="recipient-name" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="recipient-name" class="col-form-label">Employment
+                                                    Type</label>
+                                                <input type="text" name="employment_type" value=""
+                                                    class="form-control" id="recipient-name" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="recipient-name" class="col-form-label">Company
+                                                    Name</label>
+                                                <input type="text" name="company_name" value=""
+                                                    class="form-control" id="recipient-name" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="recipient-name" class="col-form-label">Location</label>
+                                                <input type="text" name="location" value=""
+                                                    class="form-control" id="recipient-name" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="start-date" class="col-form-label">Start Date</label>
+                                                <div class="flex_between">
+                                                    <select class="form-control" id="start-date" name="start_date"
+                                                        required>
+                                                        <option value="January">January</option>
+                                                        <option value="February">February</option>
+                                                        <option value="March">March</option>
+                                                        <option value="April">April</option>
+                                                        <option value="May">May</option>
+                                                        <option value="June">June</option>
+                                                        <option value="July">July</option>
+                                                        <option value="August">August</option>
+                                                        <option value="September">September</option>
+                                                        <option value="October">October</option>
+                                                        <option value="November">November</option>
+                                                        <option value="Desember">Desember</option>
+                                                    </select>
+
+                                                    <select class="form-control" id="start-year" name="start_year">
+                                                        <option value="2010">2010</option>
+                                                        <option value="2011">2011</option>
+                                                        <option value="2012">2012</option>
+                                                        <option value="2013">2013</option>
+                                                        <option value="2014">2014</option>
+                                                        <option value="2015">2015</option>
+                                                        <option value="2016">2016</option>
+                                                        <option value="2017">2017</option>
+                                                        <option value="2018">2018</option>
+                                                        <option value="2019">2019</option>
+                                                        <option value="2020">2020</option>
+                                                        <option value="2021">2021</option>
+                                                        <option value="2022">2022</option>
+                                                        <option value="2023">2023</option>
+                                                        <option value="2024">2024</option>
+                                                    </select>
+                                                </div>
+
+                                                <label for="end-date">End Date</label>
+                                                <div class="flex_between">
+                                                    <select class="form-control" id="end-date" name="end_date">
+                                                        <option value="January">January</option>
+                                                        <option value="February">February</option>
+                                                        <option value="March">March</option>
+                                                        <option value="April">April</option>
+                                                        <option value="May">May</option>
+                                                        <option value="June">June</option>
+                                                        <option value="July">July</option>
+                                                        <option value="August">August</option>
+                                                        <option value="September">September</option>
+                                                        <option value="October">October</option>
+                                                        <option value="November">November</option>
+                                                        <option value="Desember">Desember</option>
+                                                    </select>
+
+                                                    <select class="form-control" id="end-year" name="end_year">
+                                                        <option value="2010">2010</option>
+                                                        <option value="2011">2011</option>
+                                                        <option value="2012">2012</option>
+                                                        <option value="2013">2013</option>
+                                                        <option value="2014">2014</option>
+                                                        <option value="2015">2015</option>
+                                                        <option value="2016">2016</option>
+                                                        <option value="2017">2017</option>
+                                                        <option value="2018">2018</option>
+                                                        <option value="2019">2019</option>
+                                                        <option value="2020">2020</option>
+                                                        <option value="2021">2021</option>
+                                                        <option value="2022">2022</option>
+                                                        <option value="2023">2023</option>
+                                                        <option value="2024">2024</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="recipient-name" class="col-form-label">Profile
+                                                    Headline</label>
+                                                <input type="text" name="profile_headline" value=""
+                                                    class="form-control" id="recipient-name" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="recipient-name" class="col-form-label">Description</label>
+                                                <input type="text" name="description" value=""
+                                                    class="form-control" id="recipient-name" required>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-primary">Save</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Add Modal Work Experience Ends here-->
                         @foreach ($work_experience as $wrkexpr)
                             <div class="card_content">
-                                <img src="/img/assets/career_page/unilever.png" alt="" />
+                                <img src="/img/assets/career_page/coursera.png" alt="" />
                                 <div>
-                                    {{-- <h5>{{ $-> }}</h5> --}}
-                                    <p>Unilever | Internship</p>
-                                    <p>July 2024 - Present</p>
-                                    <p>Indonesia</p>
+                                    <h5>{{ $wrkexpr->profile_headline }}</h5>
+                                    <p>{{ $wrkexpr->company_name }}</p>
+                                    <p>{{ $wrkexpr->start_date }} {{ $expr->start_year }} - {{ $expr->end_date }}
+                                        {{ $wrkexpr->end_year }}</p>
+                                    <p>{{ $wrkexpr->employment_type }}</p>
                                     <p class="editable_card_desc">
-                                        Creating interesting and inspiring social media content.
+                                        {{ $wrkexpr->description }}
                                     </p>
                                 </div>
                             </div>
-                            <div class="flex-center">
-                                <button type="button" data-toggle="modal" data-target="#modalWorkExperience"
-                                    class="btn"><i class="fa fa-plus"></i><span>Add Experience</span></button>
-                                <button type="button" data-toggle="modal" data-target="#modalWorkExperience"
-                                    class="btn"><i class="fa fa-edit"></i><span>Edit Experience</span></button>
+                            <div class="flex-center" id="flex_cert-{{ $wrkexpr->id }}">
+                                <button type="button" data-toggle="modal"
+                                    data-target="#modalEditWorkExperience-{{ $wrkexpr->id }}" class="btn"><i
+                                        class="fa fa-edit"></i><span>Edit Work Experience</span></button>
+                                <button type="button" data-toggle="modal"
+                                    data-target="#modalDeleteWorkExperience-{{ $wrkexpr->id }}" class="btn"><i
+                                        class="	fa fa-trash-o"></i><span>Delete Work Experience</span></button>
                             </div>
-                            <!--Modal Starts here-->
-                            <div class="modal fade" id="modalWorkExperience" tabindex="-1" role="dialog"
-                                aria-hidden="true">
+                            <!--Edit Modal Work Experience Starts here-->
+                            <div class="modal fade" id="modalEditWorkExperience-{{ $wrkexpr->id }}" tabindex="-1"
+                                role="dialog" aria-hidden="true">
                                 <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <form action="/utama/wrkexpr-edit/{{ $wrkexpr->id }}" method="post">
@@ -871,7 +1005,7 @@
                                                 <h2>Add Data</h2>
                                                 <div class="form-group">
                                                     <label for="recipient-name" class="col-form-label">Title</label>
-                                                    <input type="text" name="title"
+                                                    <input type="text" name="Title"
                                                         value="{{ $wrkexpr->Title }}" class="form-control"
                                                         id="recipient-name" required>
                                                 </div>
@@ -885,7 +1019,7 @@
                                                 <div class="form-group">
                                                     <label for="recipient-name" class="col-form-label">Company
                                                         Name</label>
-                                                    <input type="text" name="company_name"
+                                                    <input type="text" name="employment_type"
                                                         value="{{ $wrkexpr->company_name }}" class="form-control"
                                                         id="recipient-name" required>
                                                 </div>
@@ -937,7 +1071,8 @@
 
                                                     <label for="end-date">End Date</label>
                                                     <div class="flex_between">
-                                                        <select class="form-control" id="end-date" name="end_date">
+                                                        <select class="form-control" id="end-date"
+                                                            name="end_date">
                                                             <option value="January">January</option>
                                                             <option value="February">February</option>
                                                             <option value="March">March</option>
@@ -952,7 +1087,8 @@
                                                             <option value="Desember">Desember</option>
                                                         </select>
 
-                                                        <select class="form-control" id="end-year" name="end_year">
+                                                        <select class="form-control" id="end-year"
+                                                            name="end_year">
                                                             <option value="2010">2010</option>
                                                             <option value="2011">2011</option>
                                                             <option value="2012">2012</option>
@@ -975,8 +1111,8 @@
                                                     <label for="recipient-name" class="col-form-label">Profile
                                                         Headline</label>
                                                     <input type="text" name="profile_headline"
-                                                        value="{{ $wrkexpr->profile_headline }}" class="form-control"
-                                                        id="recipient-name" required>
+                                                        value="{{ $wrkexpr->profile_headline }}"
+                                                        class="form-control" id="recipient-name" required>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="recipient-name"
@@ -993,33 +1129,103 @@
                                     </div>
                                 </div>
                             </div>
-                            <!--Modal Ends here-->
+                            <!--Edit Modal Work Experience Ends here-->
+                            <!--Delete Modal Work Experience Starts here-->
+                            <div class="modal fade" id="modalDeleteWorkExperience-{{ $wrkexpr->id }}"
+                                tabindex="-1" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalCenterTitle">Delete this data?
+                                            </h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>This changes cannot be reversed.</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
+                                            <form action="/utama/wrkexpr-del/{{ $wrkexpr->id }}" method="post">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit" class="btn btn-danger">Delete Data</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Delete Modal Experience Ends here-->
                         @endforeach
                         <hr />
                     </div>
                     <div class="editable_card">
-                        <div class="flex_between">
+                        <!------------------------------------------------->
+                        <div class="d-flex justify-content-between">
                             <h3>Skills</h3>
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#modalAddSkills">Add Skills</button>
                         </div>
-                        @foreach ($skills as $skl)
-                            <div class="card_content">
-                                <img src="/img/assets/career_page/figma.png" width="60px" alt="" />
-                                <div>
-                                    <h5>Figma</h5>
-                                    <p>Head of Marketing Division</p>
-                                    <p>3 years experience</p>
-                                    <p class="editable_card_desc">Utilizing UI Interface</p>
+                        <!--Add Modal Skills Starts here-->
+                        <div class="modal fade" id="modalAddSkills" tabindex="-1" role="dialog"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <form action="/utama/skl-add" method="post">
+                                        @csrf
+                                        <div class="modal-body">
+                                            <h2>Add Data</h2>
+                                            <div class="form-group">
+                                                <label for="recipient-name" class="col-form-label">Name Skill</label>
+                                                <input type="text" name="name_skill" value=""
+                                                    class="form-control" id="recipient-name" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="recipient-name" class="col-form-label">Work as</label>
+                                                <input type="text" name="work_as" value=""
+                                                    class="form-control" id="recipient-name" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="recipient-name" class="col-form-label">Experience</label>
+                                                <input type="text" name="experience" value=""
+                                                    class="form-control" id="recipient-name" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="recipient-name" class="col-form-label">Description</label>
+                                                <input type="text" name="description" value=""
+                                                    class="form-control" id="recipient-name" required>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-primary">Save</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
-                            <div class="flex-center">
-                                <button type="button" data-toggle="modal" data-target="#modalSkills"
-                                    class="btn"><i class="fa fa-plus"></i><span>Add Experience</span></button>
-                                <button type="button" data-toggle="modal" data-target="#modalSkills"
-                                    class="btn"><i class="fa fa-edit"></i><span>Edit Experience</span></button>
+                        </div>
+                        <!--Add Modal Skills Ends here-->
+                        @foreach ($skills as $skl)
+                            <div class="card_content">
+                                <img src="/img/assets/career_page/coursera.png" alt="" />
+                                <div>
+                                    <h5>{{ $skl->name_skill }}</h5>
+                                    <p>{{ $skl->work_as }}</p>
+                                    <p>{{ $skl->experience }}</p>
+                                    <p>{{ $skl->description }}</p>
+                                </div>
                             </div>
-                            <!--Modal Starts here-->
-                            <div class="modal fade" id="modalSkills" tabindex="-1" role="dialog"
-                                aria-hidden="true">
+                            <div class="flex-center" id="flex_cert-{{ $skl->id }}">
+                                <button type="button" data-toggle="modal"
+                                    data-target="#modalEditSkills-{{ $skl->id }}" class="btn"><i
+                                        class="fa fa-edit"></i><span>Edit Skill</span></button>
+                                <button type="button" data-toggle="modal"
+                                    data-target="#modalDeleteSkills-{{ $skl->id }}" class="btn"><i
+                                        class="	fa fa-trash-o"></i><span>Delete Skill</span></button>
+                            </div>
+                            <!--Edit Modal Skills Starts here-->
+                            <div class="modal fade" id="modalEditSkills-{{ $skl->id }}" tabindex="-1"
+                                role="dialog" aria-hidden="true">
                                 <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <form action="/utama/skl-edit/{{ $skl->id }}" method="post">
@@ -1028,19 +1234,19 @@
                                             <div class="modal-body">
                                                 <h2>Add Data</h2>
                                                 <div class="form-group">
-                                                    <label for="recipient-name" class="col-form-label">Skill</label>
+                                                    <label for="recipient-name" class="col-form-label">Name Skill</label>
                                                     <input type="text" name="name_skill"
                                                         value="{{ $skl->name_skill }}" class="form-control"
                                                         id="recipient-name" required>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="recipient-name" class="col-form-label">Work As</label>
-                                                    <input type="text" name="work_as" value="{{ $skl->work_as }}"
-                                                        class="form-control" id="recipient-name" required>
+                                                    <label for="recipient-name" class="col-form-label">Work as</label>
+                                                    <input type="text" name="work_as"
+                                                        value="{{ $skl->work_as }}" class="form-control"
+                                                        id="recipient-name" required>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="recipient-name"
-                                                        class="col-form-label">Experience</label>
+                                                    <label for="recipient-name" class="col-form-label">Experience</label>
                                                     <input type="text" name="experience"
                                                         value="{{ $skl->experience }}" class="form-control"
                                                         id="recipient-name" required>
@@ -1060,7 +1266,34 @@
                                     </div>
                                 </div>
                             </div>
-                            <!--Modal Ends here-->
+                            <!--Edit Modal Skills Ends here-->
+                            <!--Delete Modal Skills Starts here-->
+                            <div class="modal fade" id="modalDeleteSkills-{{ $skl->id }}"
+                                tabindex="-1" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalCenterTitle">Delete this data?
+                                            </h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>This changes cannot be reversed.</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
+                                            <form action="/utama/skl-del/{{ $skl->id }}" method="post">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit" class="btn btn-danger">Delete Data</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Delete Modal Experience Ends here-->
                         @endforeach
                         <hr />
                     </div>

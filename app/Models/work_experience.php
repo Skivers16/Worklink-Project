@@ -13,7 +13,7 @@ class work_experience extends Model
 
     protected $primaryKey = 'id';
 
-    protected $guarded = ['id', 'id_user'];
+    protected $guarded = ['id'];
 
     public $timestamps = false;
 
