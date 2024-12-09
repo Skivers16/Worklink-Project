@@ -13,16 +13,16 @@ return new class extends Migration
     {
         Schema::create('work_experience', function (Blueprint $table) {
             $table->bigIncrements('id')->unique('id');
-            $table->string('description', 200)->nullable();
-            $table->string('profile_headline', 50)->nullable();
+            $table->string('description', 200);
+            $table->string('profile_headline', 50);
             $table->string('end_year', 10)->nullable();
             $table->string('end_date', 10)->nullable();
             $table->string('start_year', 10)->nullable();
             $table->string('start_date', 10)->nullable();
             $table->string('location', 30)->nullable();
-            $table->string('company_name', 20)->nullable();
+            $table->string('company_name', 20);
             $table->string('employment_type', 30)->nullable();
-            $table->string('Title', 30)->nullable();
+            $table->string('Title', 30);
             $table->unsignedBigInteger('id_user')->nullable()->index('id_user');
         });
     }
